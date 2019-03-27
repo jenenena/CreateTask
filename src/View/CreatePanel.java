@@ -1,4 +1,4 @@
- package View;
+ package view;
 
  import javax.swing.*;
  import java.awt.Color;
@@ -12,16 +12,27 @@ public class CreatePanel extends JPanel
 	private SpringLayout appLayout;
 	private CreateController appController;
 	//Text fields and labels here
+	private JButton shuffleButton;
+	private JLabel titleLabel;
+	private JTextField songField;
 	
 	
 	public CreatePanel(CreateController appController)
 	{
 		super();
-		
-		//nameofvariable = new type(value)
+		this.shuffleButton = new JButton("shuffle");
+		this.titleLabel = new JLabel("Need new music? Click the button to get a suggested song.");
+		this.songField = new JTextField("Song Here");
 		
 		this.appController = appController;
-		this.appLayout = new SpringLayout(); // Layout constraints go below this line
+		this.appLayout = new SpringLayout();
+		appLayout.putConstraint(SpringLayout.SOUTH, songField, -311, SpringLayout.SOUTH, this);
+		appLayout.putConstraint(SpringLayout.NORTH, shuffleButton, 6, SpringLayout.SOUTH, songField);
+		appLayout.putConstraint(SpringLayout.EAST, shuffleButton, -351, SpringLayout.EAST, this);
+		appLayout.putConstraint(SpringLayout.WEST, songField, 177, SpringLayout.WEST, this);
+		appLayout.putConstraint(SpringLayout.EAST, songField, -168, SpringLayout.EAST, this);
+		appLayout.putConstraint(SpringLayout.NORTH, titleLabel, 10, SpringLayout.NORTH, this);
+		appLayout.putConstraint(SpringLayout.WEST, titleLabel, 212, SpringLayout.WEST, this);
 		
 		
 		setupPanel();
@@ -33,18 +44,29 @@ public class CreatePanel extends JPanel
 	private void setupPanel()
 	{
 		this.setLayout(appLayout);
-		this.setBackground(Color.darkGray);
+		this.setBackground(Color.lightGray);
 		this.setPreferredSize(new Dimension(800, 600));
 		
-		// this.add(my data members);
+		this.add(shuffleButton);
+		this.add(titleLabel);
+		this.add(songField);
 	}
 	
 	private void setupLayout()
 	{
-		
+		//constraints
 	}
 
-	
+	private void setupListeners()
+	{
+		shuffleButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				appController.//METHOD!
+			}
+		});
+	}
 }
 
 
