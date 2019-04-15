@@ -21,7 +21,7 @@ public class CreateFrame extends JFrame
 	{
 		this.setContentPane(appPanel);
 		this.setSize(800, 600);
-		this.setTitle(" "); // COME ADD A TITLE
+		this.setTitle("Song Suggester"); // COME ADD A TITLE
 		this.setResizable(false);
 		this.setVisible(true);
 	}

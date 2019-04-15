@@ -44,7 +44,7 @@ public class CreatePanel extends JPanel
 	private void setupPanel()
 	{
 		this.setLayout(appLayout);
-		this.setBackground(Color.lightGray);
+		this.setBackground(Color.orange);
 		this.setPreferredSize(new Dimension(800, 600));
 		
 		this.add(shuffleButton);
@@ -63,7 +63,7 @@ public class CreatePanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent click)
 			{
-				appController.//METHOD!
+				songField.setText(appController.findSong());
 			}
 		});
 	}
