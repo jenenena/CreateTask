@@ -15,7 +15,9 @@ public class CreatePanel extends JPanel
 	private JButton shuffleButton;
 	private JLabel titleLabel;
 	private JTextField songField;
-	
+	private JLabel number;
+	private JLabel numberLabel;
+//	private int shuffNumber;
 	
 	public CreatePanel(CreateController appController)
 	{
@@ -23,9 +25,15 @@ public class CreatePanel extends JPanel
 		this.shuffleButton = new JButton("shuffle");
 		this.titleLabel = new JLabel("Need new music? Click the button to get a suggested song.");
 		this.songField = new JTextField("Song Here");
+		this.number = new JLabel("0");
+		this.numberLabel = new JLabel("Number of times shuffled:");
 		
 		this.appController = appController;
 		this.appLayout = new SpringLayout();
+		appLayout.putConstraint(SpringLayout.NORTH, number, 0, SpringLayout.NORTH, numberLabel);
+		appLayout.putConstraint(SpringLayout.WEST, number, 0, SpringLayout.WEST, shuffleButton);
+		appLayout.putConstraint(SpringLayout.NORTH, numberLabel, 92, SpringLayout.SOUTH, songField);
+		appLayout.putConstraint(SpringLayout.WEST, numberLabel, 0, SpringLayout.WEST, songField);
 		appLayout.putConstraint(SpringLayout.SOUTH, songField, -311, SpringLayout.SOUTH, this);
 		appLayout.putConstraint(SpringLayout.NORTH, shuffleButton, 6, SpringLayout.SOUTH, songField);
 		appLayout.putConstraint(SpringLayout.EAST, shuffleButton, -351, SpringLayout.EAST, this);
@@ -50,6 +58,8 @@ public class CreatePanel extends JPanel
 		this.add(shuffleButton);
 		this.add(titleLabel);
 		this.add(songField);
+		this.add(number);
+		this.add(numberLabel);
 	}
 	
 	private void setupLayout()
@@ -64,6 +74,13 @@ public class CreatePanel extends JPanel
 			public void actionPerformed(ActionEvent click)
 			{
 				songField.setText(appController.findSong());
+			}
+		});
+		shuffleButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent click)
+			{
+				number.setText(Integer.toString(Integer.parseInt(number.getText()) + 1));
 			}
 		});
 	}

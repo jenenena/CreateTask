@@ -6,8 +6,13 @@ import view.CreateFrame;
 public class CreateController
 {
 	ArrayList<String> songList = new ArrayList<String>();
+	ArrayList<String> usedList = new ArrayList<String>();
+	
 	private CreateFrame appFrame;
 	
+//	private int shuffNum = 0;
+	
+	String go = "";
 	
 	public CreateController()
 	{
@@ -46,10 +51,38 @@ public class CreateController
 		songList.add("Sea of Air by Portugal. The Man");
 	}
 	
-	public String findSong()
+	public String getCurrentSong()
 	{
-		int index = (int)(Math.random() * 27);
+		int totalSongCount = songList.size();
+		int index = (int)(Math.random() * totalSongCount);
 		String currentSong = songList.get(index);
 		return currentSong;
+	}
+	
+	public boolean isGood(String abc)
+	{
+		go = abc;
+		if(usedList.contains(abc))
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+
+	}
+	
+	public String findSong()
+	{
+		go = getCurrentSong();
+		if(isGood(go))
+		{
+			return go;
+		}
+		else
+		{
+			return findSong();
+		}
 	}
 }
