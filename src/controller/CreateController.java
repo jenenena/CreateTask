@@ -56,13 +56,20 @@ public class CreateController
 		int totalSongCount = songList.size();
 		int index = (int)(Math.random() * totalSongCount);
 		String currentSong = songList.get(index);
+		
+		while(!(isGood(currentSong)))
+		{
+			index = (int)(Math.random() * totalSongCount);
+			currentSong = songList.get(index);
+		}
+		
+		usedList.add(currentSong);
 		return currentSong;
 	}
 	
-	public boolean isGood(String abc)
+	public boolean isGood(String mySong)
 	{
-		go = abc;
-		if(usedList.contains(abc))
+		if(usedList.contains(mySong))
 		{
 			return false;
 		}
@@ -70,19 +77,12 @@ public class CreateController
 		{
 			return true;
 		}
-
 	}
 	
 	public String findSong()
 	{
-		go = getCurrentSong();
-		if(isGood(go))
-		{
-			return go;
-		}
-		else
-		{
-			return findSong();
-		}
+			String mySong = getCurrentSong();
+			return mySong;
 	}
+	
 }
